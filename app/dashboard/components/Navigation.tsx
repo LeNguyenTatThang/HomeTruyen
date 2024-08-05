@@ -6,8 +6,8 @@ const Navigation = () => {
     const [activeItem, setActiveItem] = useState<string | null>("dashboard")
 
     const handleItemClick = (item: string) => {
-        setActiveItem(item);
-    };
+        setActiveItem(item)
+    }
 
     return (
         <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
@@ -80,4 +80,4 @@ const Navigation = () => {
     )
 }
 
-export default Navigation;
+export default Navigation
