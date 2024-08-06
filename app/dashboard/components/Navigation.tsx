@@ -32,7 +32,7 @@ const Navigation = () => {
                 icon={<div className="h-4 w-4" />}
                 isActive={activeItem === "truyen"}
                 onClick={() => handleItemClick("truyen")}
-                href="/dashboard"
+                href="/dashboard/truyen"
             />
             <NavItem
                 label="Thể loại"
@@ -46,7 +46,7 @@ const Navigation = () => {
                 icon={<div className="h-4 w-4" />}
                 isActive={activeItem === "tac-gia"}
                 onClick={() => handleItemClick("tac-gia")}
-                href="/dashboard"
+                href="/dashboard/tac-gia"
             />
             <NavItem
                 label="Tu vi"
