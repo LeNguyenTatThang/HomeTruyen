@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import "../globals.css"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
