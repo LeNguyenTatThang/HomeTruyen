@@ -35,7 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Switch } from "@/components/ui/switch"
-
+import { Checkbox } from "@/components/ui/checkbox"
 const data: authorData[] = [
   {
     stt: 1, id: "m5gr84i9", email: "ken99@yahoo.com", name: "ken99", status: true, highlight: true, totalStories: 45
@@ -67,23 +67,34 @@ export type authorData = {
   totalStories: number
 }
 
-
 const Author = () => {
   const [status, setStatus] = React.useState<authorData[]>(data)
-
+  const [highlight, setHighlight] = React.useState<authorData[]>(data)
   const handleToggle = (id: string) => {
-    console.log("check id: ", id);
-
-    setStatus(prev => {
-      const checkData = prev.map(author =>
-        author.id === id ? { ...author, status: !author.status } : author
-      )
-      console.log(checkData)
-      return checkData
-
-    })
+    const updatedStatus = status.map(author =>
+      author.id === id ? { ...author, status: !author.status } : author
+    )
+    setStatus(updatedStatus)
+    const updatedData = combineData(updatedStatus, highlight)
+    setCombinedData(updatedData)
   }
 
+  const handleToggleHighLight = (id: string) => {
+    const updatedHighlight = highlight.map(author =>
+      author.id === id ? { ...author, highlight: !author.highlight } : author
+    )
+    setHighlight(updatedHighlight)
+    const updatedData = combineData(status, updatedHighlight)
+    setCombinedData(updatedData)
+  }
+
+  const combineData = (statusData: authorData[], highlightData: authorData[]): authorData[] => {
+    return statusData.map((author, index) => ({
+      ...author,
+      status: statusData[index]?.status ?? author.status,
+      highlight: highlightData[index]?.highlight ?? author.highlight
+    }))
+  }
 
   const columns: ColumnDef<authorData>[] = [
     {
@@ -129,7 +140,7 @@ const Author = () => {
       cell: ({ row }) => (
         <div className="capitalize">
           <Switch
-            checked={row.getValue("status")}
+            checked={row.original.status}
             onCheckedChange={() => handleToggle(row.original.id)}
           />
         </div>
@@ -139,7 +150,11 @@ const Author = () => {
       accessorKey: "highlight",
       header: "Nổi bật",
       cell: ({ row }) => (
-        <div className="capitalize"><Switch checked={row.getValue("highlight")} /></div>
+        <div className="capitalize">
+          <Switch checked={row.original.highlight}
+            onCheckedChange={() => handleToggleHighLight(row.original.id)}
+          />
+        </div>
       ),
     },
     {
@@ -187,9 +202,9 @@ const Author = () => {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
-
+  const [combinedData, setCombinedData] = React.useState<authorData[]>(combineData(status, highlight));
   const table = useReactTable({
-    data,
+    data: combinedData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
