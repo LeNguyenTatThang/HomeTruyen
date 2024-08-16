@@ -1,8 +1,5 @@
 import type { Metadata } from "next"
 
-import "../globals.css"
-
-
 export const metadata: Metadata = {
     title: "Author Home Truyen",
     description: "Author",
@@ -15,7 +12,7 @@ export default function AuthorLayout({
 }>) {
     return (
         <section>
-            <nav> nav author</nav>
+            <nav className="container"> nav author</nav>
             {children}
         </section>
     )
