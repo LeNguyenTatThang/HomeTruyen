@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -51,6 +51,16 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        animation: {
+          "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+        },
+        keyframes: {
+          "border-beam": {
+            "100%": {
+              "offset-distance": "100%",
+            }
+          }
         },
       },
       borderRadius: {

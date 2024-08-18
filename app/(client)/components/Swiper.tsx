@@ -3,6 +3,7 @@ import React from 'react'
 import Image from "next/image"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow, Autoplay } from 'swiper/modules'
+import ShineBorder from "@/components/magicui/shine-border"
 import 'swiper/css'
 const data = [
   {
@@ -72,7 +73,7 @@ const My3DSwiper = () => {
       grabCursor={true}
       centeredSlides={true}
       coverflowEffect={{
-        rotate: 50,
+        rotate: 30,
         stretch: -30,
         depth: 100,
         modifier: 1,
@@ -98,18 +99,22 @@ const My3DSwiper = () => {
       {
         data.map((member, index) => (
           <SwiperSlide key={index}>
-            <Image
-              src={member.imgSrc}
-              alt={member.name}
-              width={480}
-              height={300} />
+            <ShineBorder
+              className="p-0 m-0 relative flex h-full w-full flex-col items-center justify-center bg-background"
+              color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+            >
+              <Image
+                src={member.imgSrc}
+                alt={member.name}
+                width={480}
+                height={300} />
+            </ShineBorder>
             <h3 className='text-center'>
               {member.name}
             </h3>
           </SwiperSlide>
         ))
       }
-      < div className="swiper-pagination" ></div >
     </Swiper >
   )
 }
