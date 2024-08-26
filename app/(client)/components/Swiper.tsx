@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow, Autoplay } from 'swiper/modules'
 import ShineBorder from "@/components/magicui/shine-border"
 import 'swiper/css'
+import BoxReveal from '@/components/magicui/box-reveal'
 const data = [
   {
     imgSrc: "https://images.pexels.com/photos/3775583/pexels-photo-3775583.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
@@ -82,16 +83,20 @@ const My3DSwiper = () => {
       modules={[Autoplay, EffectCoverflow]}
       className="mySwiper"
       breakpoints={{
+        280: {
+          slidesPerView: 2,
+          spaceBetween: 0
+        },
         640: {
-          slidesPerView: 1,
+          slidesPerView: 3,
           spaceBetween: 0
         },
         768: {
-          slidesPerView: 2,
+          slidesPerView: 4,
           spaceBetween: -20
         },
         1024: {
-          slidesPerView: 4,
+          slidesPerView: 6,
           spaceBetween: -30
         }
       }}
@@ -99,16 +104,20 @@ const My3DSwiper = () => {
       {
         data.map((member, index) => (
           <SwiperSlide key={index}>
-            <ShineBorder
-              className="p-0 m-0 relative flex h-full w-full flex-col items-center justify-center bg-background"
-              color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-            >
-              <Image
-                src={member.imgSrc}
-                alt={member.name}
-                width={480}
-                height={300} />
-            </ShineBorder>
+            <BoxReveal boxColor={"#f3f4f6"} duration={0.5} width={'100%'}>
+              <ShineBorder
+                className="p-0 m-0 relative flex h-full w-full flex-col items-center justify-center bg-background"
+                color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+              >
+                <Image
+                  src={member.imgSrc}
+                  alt={member.name}
+                  width={380}
+                  height={200}
+                  priority
+                  className="custom-image-class" />
+              </ShineBorder>
+            </BoxReveal>
             <h3 className='text-center'>
               {member.name}
             </h3>
