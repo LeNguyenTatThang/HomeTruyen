@@ -67,3 +67,7 @@
     @apply bg-background text-foreground;
   }
 }
+.custom-image-class {
+  width: 100%; 
+  height: auto; 
+}

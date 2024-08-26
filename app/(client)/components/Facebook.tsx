@@ -16,7 +16,7 @@ const FacebookPagePlugin = () => {
                     nonce="gndLkuTe"
                 ></Script>
                 <div
-                    className="fb-page mt-10"
+                    className="fb-page mt-10 mx-2"
                     data-href="https://www.facebook.com/hometruyen"
                     data-tabs=""
                     data-width=""
