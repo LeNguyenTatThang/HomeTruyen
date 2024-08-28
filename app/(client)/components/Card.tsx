@@ -5,9 +5,11 @@ import BoxReveal from "@/components/magicui/box-reveal"
 import TypingAnimation from "@/components/magicui/typing-animation"
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
 interface Story {
   id: number
   nameStory: string
+  img: string
   author: string
   slug: string
   children?: React.ReactNode
@@ -29,7 +31,7 @@ const Card: React.FC<CardProps> = ({ cardData }) => {
         </div>
         <div className="flex flex-wrap gap-5">
           <div className="grid md:grid-cols-7 sm:grid-cols-2 grid-cols-2 gap-5 flex-grow">
-            {cardData.map(({ nameStory, id, slug }) => (
+            {cardData.map(({ nameStory, id, img, slug }) => (
               <div
                 key={id}
                 className="flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
@@ -39,10 +41,13 @@ const Card: React.FC<CardProps> = ({ cardData }) => {
                     <Link href={`/${slug}`}>
                       <div className="relative max-w-xs overflow-hidden bg-cover bg-no-repeat">
                         <div className="max-w-xs transition duration-300 ease-in-out hover:scale-110 flex items-end">
-                          <img
-                            src="https://tecdn.b-cdn.net/img/new/fluid/city/113.webp"
+                          <Image
+                            src={img}
+                            alt={slug}
+                            width={380}
+                            height={200}
+                            priority
                             className="w-full h-64 object-cover"
-                            alt="Louvre"
                           />
                           <div className="absolute bg-slate-500 bg-opacity-50 p-2 rounded text-white w-full flex justify-center">
                             <p className="font-sans font-medium leading-relaxed text-center text-xs">

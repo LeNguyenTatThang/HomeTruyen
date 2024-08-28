@@ -1,23 +1,19 @@
-import type { Metadata } from "next"
-import "../globals.css"
-import { ReactNode } from 'react'
-import Nav from "./components/Nav"
-import Footer from "./components/Footer"
+import type { Metadata } from 'next'
+import '../globals.css'
+import ClientLayout from './components/ClientLayout'
 
 export const metadata: Metadata = {
-  title: "Home Truyện",
+  title: 'Home Truyện'
 }
 
-export function MainLayout({ children }: { children: ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   )
 }
-
-export default MainLayout

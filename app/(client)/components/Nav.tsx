@@ -11,6 +11,7 @@ import {
 import NavItem from "./NavItem"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Colors } from "./Colors"
 const components: { title: string; href: string }[] = [
   {
     title: "Theo ngày",
@@ -51,7 +52,7 @@ const category: { title: string; href: string }[] = [
 ]
 
 
-const Nav = () => {
+const Nav = ({ setBgColor }: { setBgColor: (value: string) => void }) => {
   const [searchTerm, setSearchTerm] = React.useState("")
 
   return (
@@ -66,6 +67,7 @@ const Nav = () => {
         <Button className="text-white cursor-pointer md:hidden mt-2">Menu</Button>
         <div className="md:flex-row items-center p-4 w-full md:w-auto hidden md:flex">
           <div className="flex items-center">
+            <Colors setBgColor={setBgColor} />
             <NavigationMenu>
               <NavigationMenuList className="flex space-x-2 md:space-x-4">
                 <NavigationMenuItem>
