@@ -4,10 +4,12 @@ import BoxReveal from "@/components/magicui/box-reveal"
 import TypingAnimation from "@/components/magicui/typing-animation"
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
 interface Story {
     id: number
     nameStory: string
     author: string
+    img: string
     slug: string
     children?: React.ReactNode
 }
@@ -27,14 +29,17 @@ export const StoriesDone: React.FC<CardProps> = ({ cardData }) => {
                 </Button>
                 <div className="flex flex-wrap gap-5">
                     <div className="grid md:grid-cols-7 sm:grid-cols-2 grid-cols-2 gap-5 flex-grow">
-                        {cardData.map(({ id, nameStory, author }) => (
+                        {cardData.map(({ id, nameStory, img, author }) => (
                             <div
                                 key={id}
                                 className="flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/new/fluid/city/113.webp"
-                                    alt="card-image"
-                                    className="object-cover w-full h-64 rounded-t-xl"
+                                <Image
+                                    src={img}
+                                    alt={nameStory}
+                                    width={380}
+                                    height={200}
+                                    priority
+                                    className="w-full h-64 object-cover"
                                 />
                                 <div className="p-1 text-xs">
                                     <p className="text-xs font-sans antialiased font-medium leading-relaxed text-blue-gray-900 text-center">
