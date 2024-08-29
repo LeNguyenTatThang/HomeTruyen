@@ -23,7 +23,7 @@ const Home = () => {
     <>
       <>
         <div className="container">
-          <div className='flex justify-between my-6'>
+          <div className='flex justify-between py-6'>
             <span className="text-2xl font-bold text-black dark:text-white uppercase">
               Truyện Hot trong ngày
             </span>

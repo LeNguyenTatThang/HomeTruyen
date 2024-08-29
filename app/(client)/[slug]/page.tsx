@@ -15,12 +15,12 @@ const StoryDetail = () => {
     useEffect(() => {
         const fetchStory = async () => {
             try {
-                const data = await fetchStoryBySlug(slug); // Dữ liệu đã là JSON
-                setStory(data); // Set dữ liệu trực tiếp
+                const data = await fetchStoryBySlug(slug)
+                setStory(data)
             } catch (err) {
                 setError('Lỗi khi tải dữ liệu.')
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
         }
 
@@ -35,7 +35,8 @@ const StoryDetail = () => {
         <div>
             <h1>{story.nameStory}</h1>
             <p>Author: {story.author}</p>
-            {/* Hiển thị các chi tiết khác của câu chuyện */}
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Vitae eligendi reiciendis pariatur ipsum! Consectetur officiis ducimus soluta numquam, dolorem qui rem ullam consequuntur magnam, enim suscipit temporibus, quasi nihil quae.</p>
         </div>
     )
 }
