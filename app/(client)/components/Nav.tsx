@@ -52,7 +52,12 @@ const category: { title: string; href: string }[] = [
 ]
 
 
-const Nav = ({ setBgColor }: { setBgColor: (value: string) => void }) => {
+const Nav = ({ setBgColor, setFontFamily, setFontSize, setLineHeight }: {
+  setBgColor: (value: string) => void,
+  setFontFamily: (value: string) => void,
+  setFontSize: (value: string) => void,
+  setLineHeight: (value: string) => void
+}) => {
   const [searchTerm, setSearchTerm] = React.useState("")
 
   return (
@@ -67,7 +72,9 @@ const Nav = ({ setBgColor }: { setBgColor: (value: string) => void }) => {
         <Button className="text-white cursor-pointer md:hidden mt-2">Menu</Button>
         <div className="md:flex-row items-center p-4 w-full md:w-auto hidden md:flex">
           <div className="flex items-center">
-            <Colors setBgColor={setBgColor} />
+            <div className="pr-4">
+              <Colors setBgColor={setBgColor} setFontFamily={setFontFamily} setFontSize={setFontSize} setLineHeight={setLineHeight} />
+            </div>
             <NavigationMenu>
               <NavigationMenuList className="flex space-x-2 md:space-x-4">
                 <NavigationMenuItem>

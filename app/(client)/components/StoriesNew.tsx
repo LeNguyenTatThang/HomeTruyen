@@ -262,9 +262,9 @@ export const StoriesNew = () => {
   ]
   const colors = ['#FFFFF', '#CCE5FF']
   return (
-    <div className='flex pt-10'>
+    <div className='md:flex block pt-10'>
       <div>
-        <div className='flex justify-between'>
+        <div className='md:flex block justify-between'>
           <span className="text-2xl font-bold text-black dark:text-white uppercase">
             Truyện mới cập nhật
           </span>
@@ -291,7 +291,7 @@ export const StoriesNew = () => {
           </TableBody>
         </Table>
       </div>
-      <div className='w-1/4'>
+      <div className='md:w-1/4 w-full'>
         <div className='mx-4'>
           <span className="text-2xl font-bold text-black dark:text-white uppercase">Thể loại</span>
           <div className="flex flex-wrap ">
