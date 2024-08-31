@@ -23,51 +23,65 @@ type FormData = {
   theloai: string
 }
 const Category = () => {
-
   const { formState, handleSubmit, register } = useForm<FormData>({
     resolver: zodResolver(schema)
   })
 
-  const onSubmit: SubmitHandler<FormData> = (values) => {
+  const onSubmit: SubmitHandler<FormData> = async (values) => {
     console.log("Form submitted with values:", values)
+    try {
+      const response = await fetch('/api/admin/category', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: values.theloai
+        })
+      })
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Category added successfully:", data)
+      } else {
+        console.error("Error adding category:", data.message)
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+    }
   }
 
-  const categories = [
-    { stt: 1, nameCategory: "Huyền huyễn", isActive: true },
-    { stt: 2, nameCategory: "Khoa học viễn tưởng", isActive: true },
-    { stt: 3, nameCategory: "Lãng mạn", isActive: false },
-    { stt: 4, nameCategory: "Hài hước", isActive: true },
-    { stt: 5, nameCategory: "Hành động", isActive: false },
-  ]
   return (
     <>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="secondary">Thêm thể loại</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Thêm thể loại mới</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              label="Tên thể loại"
-              placeholder="Nhập tên thể loại..."
-              id="theloai"
-              type="text"
-              {...register("theloai")}
-            />
-            {formState.errors.theloai && (
-              <div className="text-red-500">{formState.errors.theloai.message}</div>
-            )}
-            <Button className="w-40 mt-2" type="submit">
-              Thêm
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      <TableItem initCategories={categories} />
+      <div className="w-full">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="secondary">Thêm thể loại</Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Thêm thể loại mới</DialogTitle>
+            </DialogHeader>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                label="Tên thể loại"
+                placeholder="Nhập tên thể loại..."
+                id="theloai"
+                type="text"
+                {...register("theloai")}
+              />
+              {formState.errors.theloai && (
+                <div className="text-red-500">{formState.errors.theloai.message}</div>
+              )}
+              <Button className="w-40 mt-2" type="submit">
+                Thêm
+              </Button>
+            </form>
+          </DialogContent>
+        </Dialog>
+        <TableItem />
+      </div>
     </>
 
   )

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Navigation from "./components/Navigation"
 import "../globals.css"
+
 export const metadata: Metadata = {
   title: "Dashboard Home Truyện",
   description: "Dashboard",
@@ -18,19 +19,19 @@ export const metadata: Metadata = {
 export default function DashboardLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
 
   return (
     <html lang="en">
-      <body>
-        <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-          <div className="hidden border-r bg-muted/40 md:block">
-            <div className="flex h-full max-h-screen flex-col gap-2">
+      <body className="flex flex-col min-h-screen">
+        <div className="flex flex-1">
+          <div className="fixed inset-y-0 left-0 w-[220px] md:w-[280px] border-r bg-muted/40 overflow-y-auto hidden md:block">
+            <div className="flex h-full flex-col gap-2">
               <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
                 <div className="flex items-center gap-2 font-semibold">
                   <div className="h-6 w-6" />
-                  <span className="">Home Truyện</span>
+                  <span>Home Truyện</span>
                 </div>
               </div>
               <div className="flex-1">
@@ -39,7 +40,7 @@ export default function DashboardLayout({
                 </nav>
               </div>
               <div className="mt-auto p-4">
-                <div x-chunk="dashboard-02-chunk-0">
+                <div>
                   <div className="p-2 pt-0 md:p-4 md:pt-0">
                     <Button asChild size="sm" className="w-full">
                       <a href="/">Về Home truyện</a>
@@ -49,10 +50,9 @@ export default function DashboardLayout({
               </div>
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-1 flex-col md:ml-[280px] ml-0 bg-background">
             <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
               <div className="w-full flex-1">
-                {/* Thêm thông tin */}
               </div>
               <div className="align-middle">
                 <DropdownMenu>
@@ -69,7 +69,7 @@ export default function DashboardLayout({
                 </Button>
               </div>
             </header>
-            <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+            <main>
               {children}
             </main>
           </div>
