@@ -10,20 +10,26 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Switch } from '@/components/ui/switch'
+import { Input } from '@/components/ui/input'
 
 const Dashboard = () => {
     return (
         <>
+            <div className="flex justify-between mx-5 text-center">
+                <Button className="mt-4">Thêm truyện mới</Button>
+                <Input className="mt-4 w-[300px] ml-2" placeholder='Tìm kiếm...' />
+            </div>
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">STT</TableHead>
+                        <TableHead className="w-[50px]">STT</TableHead>
+                        <TableHead>Ảnh</TableHead>
                         <TableHead>Tên truyện</TableHead>
-                        <TableHead>Thể loại</TableHead>
+                        <TableHead>Tác giả</TableHead>
                         <TableHead>Số chương</TableHead>
                         <TableHead>Trạng thái</TableHead>
                         <TableHead>Nổi bật</TableHead>
-                        <TableHead></TableHead>
+                        <TableHead>Công khai</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -47,19 +53,7 @@ const Dashboard = () => {
                     </TableRow>
                 </TableBody>
             </Table>
-            <div
-                className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm" x-chunk="dashboard-02-chunk-1"
-            >
-                <div className="flex flex-col items-center gap-1 text-center">
-                    <h3 className="text-2xl font-bold tracking-tight">
-                        You have no products
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                        You can start selling as soon as you add a product.
-                    </p>
-                    <Button className="mt-4">Add Product</Button>
-                </div>
-            </div>
+
         </>
     )
 }
