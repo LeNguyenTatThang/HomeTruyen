@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Navigation from "./components/Navigation"
 import "../globals.css"
-
+import { Toaster } from "@/components/ui/toaster"
 export const metadata: Metadata = {
   title: "Dashboard Home Truyện",
   description: "Dashboard",
@@ -72,6 +72,7 @@ export default function DashboardLayout({
             <main>
               {children}
             </main>
+            <Toaster />
           </div>
         </div>
       </body>

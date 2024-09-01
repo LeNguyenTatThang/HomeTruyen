@@ -9,7 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -54,10 +53,10 @@ const Category = () => {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full mx-2">
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="secondary">Thêm thể loại</Button>
+            <Button variant="secondary" className="w-full bg-lime-200 hover:bg-lime-400">Thêm thể loại</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
