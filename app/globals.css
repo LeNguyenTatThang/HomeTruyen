@@ -71,3 +71,12 @@
   width: 100%; 
   height: auto; 
 }
+
+.container{
+  padding-right: 0.5rem !important;
+  padding-left: 0.5rem !important;
+}
+
+.no-select {
+  user-select: none; /* Ngăn chặn sao chép */
+}
