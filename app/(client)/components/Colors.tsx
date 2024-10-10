@@ -185,6 +185,5 @@ export const Colors = ({ setBgColor, setFontFamily, setFontSize, setLineHeight }
                 </div>
             </PopoverContent>
         </Popover>
-
     )
 }

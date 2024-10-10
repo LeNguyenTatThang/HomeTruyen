@@ -186,38 +186,6 @@ export const StoriesNew = () => {
       genres: ["Linh Dị", "Cổ Đại"],
       chapter: "Chương 41",
       updated: "8 giờ trước"
-    },
-    {
-      key: 23,
-      nameStory: "Phiêu Miểu 2 - Quyển Mặt Quỷ",
-      author: "",
-      genres: ["Linh Dị", "Cổ Đại"],
-      chapter: "Chương 42",
-      updated: "8 giờ trước"
-    },
-    {
-      key: 24,
-      nameStory: "Cẩn Thận Động Thai",
-      author: "Mộc Thê An",
-      genres: ["Ngôn Tình", "Đô Thị"],
-      chapter: "Chương 111",
-      updated: "9 giờ trước"
-    },
-    {
-      key: 25,
-      nameStory: "Cẩn Thận Động Thai",
-      author: "Mộc Thê An",
-      genres: ["Ngôn Tình", "Đô Thị"],
-      chapter: "Chương 111",
-      updated: "9 giờ trước"
-    },
-    {
-      key: 26,
-      nameStory: "Cẩn Thận Động Thai",
-      author: "Mộc Thê An",
-      genres: ["Ngôn Tình", "Đô Thị"],
-      chapter: "Chương 111",
-      updated: "9 giờ trước"
     }
   ]
   const category = [
@@ -263,7 +231,7 @@ export const StoriesNew = () => {
   const colors = ['#FFFFF', '#CCE5FF']
   return (
     <div className='md:flex block pt-10'>
-      <div>
+      <div className='md:w-3/4 w-full'>
         <div className='md:flex block justify-between'>
           <span className="text-2xl font-bold text-black dark:text-white uppercase">
             Truyện mới cập nhật
@@ -275,8 +243,7 @@ export const StoriesNew = () => {
             {stories.map((stories, index) => (
               <TableRow key={stories.key} style={{ backgroundColor: colors[index % colors.length] }}>
                 <TableCell className="hover:underline decoration-slice">{stories.nameStory}</TableCell>
-                <TableCell className="hover:underline decoration-slice">{stories.author}</TableCell>
-                <TableCell > {stories.genres.map((genre, index) => (
+                <TableCell className="hidden md:table-cell"> {stories.genres.map((genre, index) => (
                   <span
                     key={index}
                     className="hover:underline decoration-slice mr-2"
@@ -285,13 +252,13 @@ export const StoriesNew = () => {
                   </span>
                 ))}</TableCell>
                 <TableCell className="hover:underline decoration-slice">{stories.chapter}</TableCell>
-                <TableCell>{stories.updated}</TableCell>
+                <TableCell className="hidden md:table-cell">{stories.updated}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </div>
-      <div className='md:w-1/4 w-full'>
+      <div className='md:w-1/3 w-full'>
         <div className='mx-4'>
           <span className="text-2xl font-bold text-black dark:text-white uppercase">Thể loại</span>
           <div className="flex flex-wrap ">

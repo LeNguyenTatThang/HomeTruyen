@@ -5,7 +5,7 @@ import slugify from 'slugify'
 export async function POST(req: Request) {
 
     try {
-        const { title, author, genre, publishedDate, coverImage, description, chapters, reviews, tags, status } = await req.json()
+        const { title, author, userId, genre, publishedDate, coverImage, description, chapters, reviews, tags, status } = await req.json()
         const slug = slugify(title, {
             replacement: '-',
             remove: undefined,
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
             title,
             slug,
             author,
+            userId,
             genre,
             publishedDate,
             coverImage,

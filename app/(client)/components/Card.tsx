@@ -7,10 +7,9 @@ import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 interface Story {
-  id: number
-  nameStory: string
-  img: string
-  author: string
+  _id: string
+  title: string
+  coverImage: string
   slug: string
   children?: React.ReactNode
 }
@@ -30,10 +29,10 @@ const Card: React.FC<CardProps> = ({ cardData }) => {
           <Button className='bg-yellow-50 hover:bg-yellow-200 text-black'>✨ Xem tất cả</Button>
         </div>
         <div className="flex flex-wrap gap-5">
-          <div className="grid md:grid-cols-7 sm:grid-cols-2 grid-cols-2 gap-5 flex-grow">
-            {cardData.map(({ nameStory, id, img, slug }) => (
+          <div className="grid md:grid-cols-8 sm:grid-cols-4 grid-cols-4 gap-5 flex-grow">
+            {cardData.map(({ _id, title, coverImage, slug }) => (
               <div
-                key={id}
+                key={_id}
                 className="flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
               >
                 <BoxReveal boxColor={"#f3f4f6"} duration={0.5} width={'100%'}>
@@ -42,16 +41,16 @@ const Card: React.FC<CardProps> = ({ cardData }) => {
                       <div className="relative max-w-xs overflow-hidden bg-cover bg-no-repeat">
                         <div className="max-w-xs transition duration-300 ease-in-out hover:scale-110 flex items-end">
                           <Image
-                            src={img}
+                            src={coverImage}
                             alt={slug}
                             width={380}
                             height={200}
                             priority
-                            className="w-full h-64 object-cover"
+                            className="w-full h-32 md:h-64 object-cover"
                           />
                           <div className="absolute bg-slate-500 bg-opacity-50 p-2 rounded text-white w-full flex justify-center">
-                            <p className="font-sans font-medium leading-relaxed text-center text-xs">
-                              {nameStory}
+                            <p className="font-sans font-medium leading-relaxed text-center md:text-xs text-[10px]">
+                              {title}
                             </p>
                           </div>
                         </div>

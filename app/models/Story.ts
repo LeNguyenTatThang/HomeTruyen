@@ -9,6 +9,11 @@ const chapterSchema = new Schema({
 const storySchema = new Schema({
     title: String,
     author: String,
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     slug: String,
     genre: [String],
     publishedDate: Date,

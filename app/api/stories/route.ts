@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
 import connectToDatabase from '@/lib/mongodb'
-import Category from '@/app/models/Category'
+import Story from '@/app/models/Story'
 
 export async function GET() {
     try {
         await connectToDatabase();
-        const stories = await Category.find({})
+        const stories = await Story.find({})
 
         return NextResponse.json(stories, { status: 200 })
     } catch (error) {
