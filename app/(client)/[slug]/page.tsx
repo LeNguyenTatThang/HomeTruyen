@@ -6,7 +6,9 @@ import Loading from '../loading'
 import { fetchStoryBySlug } from '@/lib/api'
 import Image from 'next/image'
 import Link from 'next/link'
-
+interface Chapter {
+  title: string
+}
 const StoryDetail = () => {
   const params = useParams()
   const slug = params.slug as string
@@ -54,19 +56,19 @@ const StoryDetail = () => {
         </div>
       </a>
       <div className="grid border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:grid-cols-3 bg-white dark:bg-gray-800">
-        {story && story.chapters && story.chapters.length > 0 ?
-          story.chapters.map((chapter, index) => (
+        {story && story.chapters && story.chapters.length > 0 ? (
+          story.chapters.map((chapter: Chapter, index: number) => (
             <figure key={index} className="flex flex-col p-1 bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e dark:bg-gray-800 dark:border-gray-700">
-              <blockquote className="max-w-2xl text-gray-500  dark:text-gray-400">
-                <Link href={`/${slug}/chuong-${index + 1}`} >
+              <blockquote className="max-w-2xl text-gray-500 dark:text-gray-400">
+                <Link href={`/${slug}/chuong-${index + 1}`}>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:cursor-pointer hover:underline">{chapter.title}</h3>
                 </Link>
               </blockquote>
             </figure>
-          )) : (
-            <p className='text-center'>Truyện này chưa có chapter nào</p>
-          )
-        }
+          ))
+        ) : (
+          <p className='text-center'>Truyện này chưa có chapter nào</p>
+        )}
       </div>
     </div>
   )
