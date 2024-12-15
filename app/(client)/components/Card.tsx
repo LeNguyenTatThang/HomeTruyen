@@ -2,7 +2,6 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import BoxReveal from "@/components/magicui/box-reveal"
-import TypingAnimation from "@/components/magicui/typing-animation"
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'

@@ -17,6 +17,11 @@ import { useSession, signOut } from "next-auth/react"
 import Image from "next/image"
 import { useRouter } from 'next/navigation'; // Updated import
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+interface Story {
+  _id: string
+  title: string
+  coverImage: string
+}
 const components: { title: string; href: string }[] = [
   { title: "Theo ngày", href: "/docs/primitives/alert-dialog" },
   { title: "Theo tuần", href: "/docs/primitives/hover-card" },
@@ -42,7 +47,6 @@ const Nav = ({
   setFontSize: (value: string) => void
   setLineHeight: (value: string) => void
 }) => {
-  const [searchTerm, setSearchTerm] = React.useState("")
   const { data: session } = useSession()
   const [user, setUser] = React.useState<{ name: string; avatar: string } | null>(null)
 
@@ -67,6 +71,32 @@ const Nav = ({
     }
   }
 
+  const [searchTerm, setSearchTerm] = React.useState('')
+  const [filteredStories, setFilteredStories] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchStories = async () => {
+      if (searchTerm.trim() === '') {
+        setFilteredStories([]) // Không hiển thị gì khi ô tìm kiếm rỗng
+        return
+      }
+
+      try {
+        const response = await fetch(`/api/search?searchTerm=${searchTerm}`)
+        const data = await response.json()
+
+        if (response.ok) {
+          setFilteredStories(data)
+        } else {
+          console.error('Error fetching stories:', data.message)
+        }
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    }
+
+    fetchStories()
+  }, [searchTerm])
 
   return (
     <div className="bg-slate-200">
@@ -105,13 +135,36 @@ const Nav = ({
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          <Input
-            type="text"
-            className="w-full md:w-64 rounded-md border border-gray-300 p-2 mt-2 ml-2 md:mt-0"
-            placeholder="Tìm kiếm..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div>
+            <input
+              type="text"
+              className="w-full md:w-64 rounded-md border border-gray-300 p-2 mt-2 ml-2 md:mt-0"
+              placeholder="Tìm kiếm..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <div className="relative">
+              <div className="absolute z-10 w-72 mt-1 bg-slate-400 overflow-y-auto max-h-80 px-2">
+                {filteredStories.length > 0 ? (
+                  filteredStories.map((story: Story) => (
+                    <div key={story._id} className="flex items-center mb-4 border-b pb-2 mt-1">
+                      <Image
+                        src={story.coverImage}
+                        alt={story.title}
+                        width={60}
+                        height={80}
+                        className="rounded-md mr-4"
+                      />
+                      <span className="text-lg font-bold">{story.title}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            </div>
+
+          </div>
           <div className="pt-1">
             {user?.name ? (
               <Popover>

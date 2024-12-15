@@ -41,3 +41,31 @@ export async function getChapterDetail(slug: string, chuong: string) {
     const data = await response.json()
     return data
 }
+
+export async function getStoriesNew() {
+    const response = await fetch(`/api/stories/new`)
+    if (!response.ok) {
+        throw new Error('Story not found')
+    }
+    const data = await response.json()
+    return data
+}
+
+//Get category /api/category
+export async function getCategory() {
+    const response = await fetch(`/api/category`)
+    if (!response.ok) {
+        throw new Error('Story not found')
+    }
+    const data = await response.json()
+    return data
+}
+//Get story with URL category
+export async function fetchCategoryBySlug(slug: string) {
+    const response = await fetch(`/api/category/${slug}`)
+    if (!response.ok) {
+        throw new Error('Story not found')
+    }
+    const data = await response.json()
+    return data
+}

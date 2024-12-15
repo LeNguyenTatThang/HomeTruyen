@@ -14,7 +14,9 @@ export async function GET() {
                     title: { $first: "$title" },
                     author: { $first: "$author" },
                     genre: { $first: "$genre" },
-                    latestChapter: { $first: "$chapters" }
+                    latestChapter: { $first: "$chapters" },
+                    publishedDate: { $first: "$publishedDate" },
+                    slug: { $first: "$slug" }
                 }
             },
             { $limit: 26 }

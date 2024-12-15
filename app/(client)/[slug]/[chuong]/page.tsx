@@ -1,76 +1,76 @@
-"use client";
-import { useParams, useRouter } from 'next/navigation';
-import React, { useState, useEffect } from 'react';
-import { getChapterDetail } from '@/lib/api';
-import ReactMarkdown from 'react-markdown';
+"use client"
+import { useParams, useRouter } from 'next/navigation'
+import React, { useState, useEffect } from 'react'
+import { getChapterDetail } from '@/lib/api'
+import ReactMarkdown from 'react-markdown'
 
 interface ChapterData {
-    story: string;
+    story: string
     chapter: {
-        title: string;
-        content: string;
-        order: number; // Thêm thuộc tính order để biết thứ tự chương
-    };
+        title: string
+        content: string
+        order: number // Thêm thuộc tính order để biết thứ tự chương
+    }
 }
 
 const ChapterDetail = () => {
-    const params = useParams();
-    const router = useRouter();
-    const { slug, chuong } = params;
+    const params = useParams()
+    const router = useRouter()
+    const { slug, chuong } = params
 
-    const [chapterData, setChapterData] = useState<ChapterData | null>(null);
-    const [totalChapters, setTotalChapters] = useState<number>(0);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [chapterData, setChapterData] = useState<ChapterData | null>(null)
+    const [totalChapters, setTotalChapters] = useState<number>(0)
+    const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         const fetchChapter = async () => {
             try {
                 setLoading(true);
-                const data = await getChapterDetail(slug as string, chuong as string);
-                console.log('Total Chapters:', data.totalChapters);
+                const data = await getChapterDetail(slug as string, chuong as string)
+                console.log('Total Chapters:', data.totalChapters)
 
                 setChapterData(data);
-                setTotalChapters(data.totalChapters);
+                setTotalChapters(data.totalChapters)
             } catch (error) {
-                console.error('Error fetching chapter:', error);
+                console.error('Error fetching chapter:', error)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
         };
 
-        fetchChapter();
-    }, [slug, chuong]);
+        fetchChapter()
+    }, [slug, chuong])
 
     const handleChapterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedChapter = event.target.value;
-        router.push(`/${slug}/${selectedChapter}`);
-    };
+        const selectedChapter = event.target.value
+        router.push(`/${slug}/${selectedChapter}`)
+    }
 
     const goToPreviousChapter = () => {
-        const currentChapter = typeof chuong === 'string' ? parseInt(chuong.replace('chuong-', ''), 10) : 1;
+        const currentChapter = typeof chuong === 'string' ? parseInt(chuong.replace('chuong-', ''), 10) : 1
         if (currentChapter > 1) {
-            const previousChapter = currentChapter - 1;
-            router.push(`/${slug}/chuong-${previousChapter}`);
+            const previousChapter = currentChapter - 1
+            router.push(`/${slug}/chuong-${previousChapter}`)
         }
-    };
+    }
 
     const goToNextChapter = () => {
-        const currentChapter = typeof chuong === 'string' ? parseInt(chuong.replace('chuong-', ''), 10) : 1;
+        const currentChapter = typeof chuong === 'string' ? parseInt(chuong.replace('chuong-', ''), 10) : 1
         if (currentChapter < totalChapters) {
-            const nextChapter = currentChapter + 1;
-            router.push(`/${slug}/chuong-${nextChapter}`);
+            const nextChapter = currentChapter + 1
+            router.push(`/${slug}/chuong-${nextChapter}`)
         }
-    };
+    }
 
     if (loading) {
         return (
             <div className="flex min-h-screen items-center justify-center bg-white dark:bg-black">
                 <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
             </div>
-        );
+        )
     }
 
-    const chapterOptions = Array.from({ length: totalChapters }, (_, index) => index + 1);
+    const chapterOptions = Array.from({ length: totalChapters }, (_, index) => index + 1)
 
     return (
         <div className='container min-h-screen py-10'>
@@ -116,7 +116,7 @@ const ChapterDetail = () => {
                 <p>Không tìm thấy dữ liệu chương.</p>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default ChapterDetail;
+export default ChapterDetail

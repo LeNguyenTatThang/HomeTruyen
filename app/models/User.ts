@@ -6,6 +6,7 @@ const UserSchema = new Schema({
     password: { type: String },
     role: { type: String, default: 'reader' },
     avatar: { type: String, default: 'no-img.jpg' },
+    provider: { type: String, default: 'local' },
     createdAt: { type: Date, default: Date.now }
 })
 UserSchema.pre('save', async function (next) {

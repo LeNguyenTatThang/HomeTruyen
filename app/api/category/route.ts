@@ -4,7 +4,7 @@ import Category from '@/app/models/Category'
 
 export async function GET() {
     try {
-        await connectToDatabase();
+        await connectToDatabase()
         const categories = await Category.find({}).exec()
 
         return NextResponse.json(categories, { status: 200 })

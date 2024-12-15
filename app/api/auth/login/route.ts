@@ -1,31 +1,30 @@
-// src/app/api/auth/login/route.ts
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import connectToDatabase from '@/lib/mongodb';
-import User from '@/app/models/User';
-import { NextResponse } from 'next/server';
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import connectToDatabase from '@/lib/mongodb'
+import User from '@/app/models/User'
+import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
     if (req.method !== 'POST') {
-        return NextResponse.json({ message: 'Chỉ chấp nhận phương thức POST' }, { status: 405 });
+        return NextResponse.json({ message: 'Chỉ chấp nhận phương thức POST' }, { status: 405 })
     }
-    const { email, password } = await req.json();
+    const { email, password } = await req.json()
 
     try {
         await connectToDatabase();
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email })
         if (!user) {
-            return NextResponse.json({ message: 'Tài khoản không tồn tại' }, { status: 400 });
+            return NextResponse.json({ message: 'Tài khoản không tồn tại' }, { status: 400 })
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password)
         if (!isPasswordValid) {
-            return NextResponse.json({ message: 'Sai mật khẩu' }, { status: 401 });
+            return NextResponse.json({ message: 'Sai mật khẩu' }, { status: 401 })
         }
 
         if (!process.env.JWT_SECRET) {
-            throw new Error("JWT_SECRET is not defined in environment variables");
+            throw new Error("JWT_SECRET is not defined in environment variables")
         }
 
         const token = jwt.sign(
@@ -51,6 +50,6 @@ export async function POST(req: Request) {
             }
         });
     } catch (error) {
-        return NextResponse.json({ message: 'Lỗi hệ thống' }, { status: 500 });
+        return NextResponse.json({ message: 'Lỗi hệ thống' }, { status: 500 })
     }
 }
