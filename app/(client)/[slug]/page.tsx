@@ -36,25 +36,28 @@ const StoryDetail = () => {
   if (!story) return <div>Không tìm thấy truyện.</div>
 
   return (
-    <div className='container h-screen py-10'>
-
-      <a href="#" className="w-full flex items-center md:flex-row sm:flex-cols bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div className='container min-h-screen py-10'>
+      <a href="#" className="w-full flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <Image
-          className='object-cover rounded-t-lg h-96 md:h-auto md:w-52 md:rounded-none md:rounded-s-lg'
+          className="object-cover rounded-t-lg w-full h-96 md:h-auto md:w-52 md:rounded-none md:rounded-l-lg mx-auto"
           width={200}
           height={385}
-          src='https://lh3.googleusercontent.com/pw/AP1GczO34mHOHwPgwAG8Ta7BrHHrv_EbaPul2GiIeaBhTmXZctqdlEP-qm0NMSN29d8xSbPVzfayA_BXeMl7JL25z5iDbbYiv1hRkZq7GuyRZ_qc_mYHd5yutolwm0zDNoAGyUVIGylTArrh972ChL88rcmC=w215-h322-s-no-gm?authuser=0'
-          alt='' />
+          src="https://lh3.googleusercontent.com/pw/AP1GczO34mHOHwPgwAG8Ta7BrHHrv_EbaPul2GiIeaBhTmXZctqdlEP-qm0NMSN29d8xSbPVzfayA_BXeMl7JL25z5iDbbYiv1hRkZq7GuyRZ_qc_mYHd5yutolwm0zDNoAGyUVIGylTArrh972ChL88rcmC=w215-h322-s-no-gm?authuser=0"
+          alt=""
+        />
         <div className="flex flex-col justify-between p-4 leading-normal w-full">
-          <h5 className="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{story.nameStory}</h5>
+          <h5 className="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {story.nameStory}
+          </h5>
           <p>Tác giả: {story.author}</p>
-          <p>Giới Thiệu:</p>
+          <p>Giới thiệu:</p>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {story.description}
           </p>
           <p>Thể loại: {story.genre}</p>
         </div>
       </a>
+
       <div className="grid border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:grid-cols-3 bg-white dark:bg-gray-800">
         {story && story.chapters && story.chapters.length > 0 ? (
           story.chapters.map((chapter: Chapter, index: number) => (
@@ -69,6 +72,17 @@ const StoryDetail = () => {
         ) : (
           <p className='text-center'>Truyện này chưa có chapter nào</p>
         )}
+      </div>
+      <div className="mt-4">
+        <h3 className="text-xl font-bold mb-2">Bình luận</h3>
+        <form className="mt-4">
+          <textarea
+            placeholder="Viết bình luận..."
+            className="block w-full p-2 border rounded mb-2"
+          />
+          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">Gửi bình luận</button>
+
+        </form>
       </div>
     </div>
   )
