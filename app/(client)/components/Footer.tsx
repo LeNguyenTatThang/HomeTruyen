@@ -1,11 +1,20 @@
+import Image from "next/image"
 import React from "react"
+import LogoFooter from "@/public/logo_footer.jpg"
 const Footer = () => {
     return (
         <footer className="relative py-4 flex flex-col items-center bg-cyan-900 overflow-hidden">
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8 z-10">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                    <a href="https://flowbite.com/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                        <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
+                    <a className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                        <Image
+                            src={LogoFooter}
+                            alt="Home Truyện Logo"
+                            width={32}
+                            height={32}
+                            priority
+                        />
+
                         <span className="text-2xl font-semibold text-white">Home truyện</span>
                     </a>
                     <ul className="flex flex-wrap items-center text-sm font-medium text-white gap-4 sm:gap-6 sm:mb-0">

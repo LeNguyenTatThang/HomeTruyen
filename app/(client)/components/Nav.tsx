@@ -17,6 +17,7 @@ import { useSession, signOut } from "next-auth/react"
 import Image from "next/image"
 import { useRouter } from 'next/navigation'; // Updated import
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import Logo from "@/public/logo.jpg"
 interface Story {
   _id: string
   title: string
@@ -99,10 +100,18 @@ const Nav = ({
   }, [searchTerm])
 
   return (
-    <div className="bg-slate-200">
+    <div className="bg-[#5E5E5E]">
       <div className="container flex md:flex-row justify-between">
-        <div className="flex items-center p-4">
-          <div className="text-lg font-semibold">Home Truyện</div>
+        <div className="flex items-center p-1">
+          <Image
+            src={Logo}
+            alt="Home Truyện Logo"
+            width={80}
+            height={32}
+            quality={80}
+            priority
+
+          />
         </div>
         <Button className="text-white cursor-pointer md:hidden mt-2">Menu</Button>
         <div className="md:flex-row items-center p-4 w-full md:w-auto hidden md:flex">
